@@ -26,6 +26,7 @@ setup(
     # tensorflow-cpu.
     install_requires=[
         "numpy",
+        "wget",
         "pandas",
         "matplotlib",
         "scipy",

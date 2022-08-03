@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -99,3 +100,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+=======
+model_survey/datasets
+>>>>>>> 0ed69d77abf7f3f50c28159f7687efcdf19f09a7
