@@ -30,7 +30,6 @@ setup(
         "pandas",
         "matplotlib",
         "scipy",
-        "matplotlib",
     ],
     extras_require={
         "dev": [
