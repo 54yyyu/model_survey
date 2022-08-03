@@ -14,10 +14,7 @@ def create_deepstar(input_shape):
 
 def train_deepstar():
     x_train, y_train, x_valid, y_valid, x_test, y_test, x_shape, y_shape = load_deepstar()
-    
-    print(x_train.shape)
-    print(y_train.shape)
-    
+
     model = create_deepstar(x_shape)
     tasks = ['Dev','Hk']
     
