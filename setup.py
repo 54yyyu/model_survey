@@ -25,7 +25,6 @@ setup(
     # Do not install tensorflow here, because might want to use tensorflow or
     # tensorflow-cpu.
     install_requires=[
-        "tensorflow",
         "numpy",
         "pandas",
         "matplotlib",
