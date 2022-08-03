@@ -35,6 +35,6 @@ def create(input_shape=(100, 4)):
     x = keras.layers.Activation('relu')(x)
     x = keras.layers.Dropout(0.4)(x)
 
-    outputs = keras.layers.Dense(4, activation='linear')(x)
+    outputs = keras.layers.Dense(2, activation='linear')(x)
 
     return inputs, outputs
