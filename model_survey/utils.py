@@ -1,8 +1,9 @@
+from re import X
 from model_zoo import deepstar
 from helper import *
 import tensorflow as tf
 from tensorflow import keras
-from scipy.stats import spearmanr
+from scipy.stats import spearmanr, pearsonr
 
 def spearman_r(y_true, y_pred):
     return (tf.py_function(spearmanr, [tf.cast(y_pred, tf.float32), 
@@ -14,17 +15,25 @@ def create_deepstar(input_shape):
 
 def train_deepstar():
     x_train, y_train, x_valid, y_valid, x_test, y_test, x_shape, y_shape = load_deepstar()
-
+    
     model = create_deepstar(x_shape)
     tasks = ['Dev','Hk']
     
     metrics = [spearman_r]
     
-    model.compile(keras.optimizers.Adam(lr=0.002),
+    model.compile(keras.optimizers.Adam(learning_rate=0.002),
                     loss='mse',
                     metrics=metrics)
     
     print(model.summary())
+    
+    pred = np.array(model.predict(x_test))
+    pred_a = pred[:, 0]
+    pred_b = pred[:, 1]
+    
+    print('pearsonr 0:', pearsonr(pred_a.flatten(), y_test[:, 0].flatten())[0])
+    print('pearsonr 1:', pearsonr(pred_b.flatten(), y_test[:, 1].flatten())[0])
+    
     
     # early stopping callback
     es_callback = keras.callbacks.EarlyStopping(monitor='val_loss', #'val_aupr',#
@@ -42,12 +51,20 @@ def train_deepstar():
 
     # train model
     history = model.fit(x_train, y_train, 
-                        epochs=100,
+                        epochs=50,
                         batch_size=128, 
                         shuffle=True,
                         validation_data=(x_valid, y_valid), 
                         callbacks=[es_callback, reduce_lr])
     
     results = model.evaluate(x_test, y_test, verbose=1)
+
+    pred = np.array(model.predict(x_test))
+    pred_a = pred[:, 0]
+    pred_b = pred[:, 1]
+    
+    print('pearsonr 0:', pearsonr(pred_a.flatten(), y_test[:, 0].flatten())[0])
+    print('pearsonr 1:', pearsonr(pred_b.flatten(), y_test[:, 1].flatten())[0])
+
     #print(results)
     
