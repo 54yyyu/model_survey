@@ -30,7 +30,6 @@ def load_deepstar():
             y_valid = np.array(hf['y_valid']).astype(np.float32).transpose()
             x_test = np.array(hf['x_test']).astype(np.float32)
             y_test = np.array(hf['y_test']).astype(np.float32).transpose()
-            
     except FileNotFoundError:
         try:
             os.mkdir('./datasets')
