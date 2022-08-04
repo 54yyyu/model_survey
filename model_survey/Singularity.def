@@ -1,0 +1,18 @@
+
+# Singularity definition file to build container.
+# With tensorflow and friends.
+#
+# This bootstraps the official tensorflow Docker image
+# and installs dependencies.
+#
+# To build the singularity image, save this file as "Singularity.def"
+# (but the name is totally arbitrary). Then build...
+# 
+#    sudo apptainer build IMAGE_NAME.sif Singularity.def
+
+Bootstrap: docker
+From: tensorflow/tensorflow:2.9.1-gpu-jupyter
+
+%post
+git archive --format=tar.gz -o /tmp/model_survey.tar.gz --prefix=model_survey/ main
+python -m pip install --no-cache-dir /tmp/model_survey.tar.gz
