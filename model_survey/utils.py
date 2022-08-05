@@ -9,6 +9,10 @@ def spearman_r(y_true, y_pred):
     return (tf.py_function(spearmanr, [tf.cast(y_pred, tf.float32), 
             tf.cast(y_true, tf.float32)], Tout = tf.float32) )
 
+def pearson_r(y_true, y_pred):
+    return (tf.py_function(pearsonr, [tf.cast(y_pred, tf.float32), 
+            tf.cast(y_true, tf.float32)], Tou = tf.float32) )
+
 def create_deepstar(input_shape):
     inputs, outputs = deepstar.create(input_shape)
     return keras.Model(inputs=inputs, outputs=outputs)
