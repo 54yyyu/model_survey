@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import numpy as np
 from . import model_zoo
 from . import helper
+=======
+from re import X
+from model_zoo import deepstar
+from helper import *
+>>>>>>> steven
 import tensorflow as tf
 from tensorflow import keras
 from scipy.stats import spearmanr, pearsonr
@@ -9,6 +15,7 @@ def spearman_r(y_true, y_pred):
     return (tf.py_function(spearmanr, [tf.cast(y_pred, tf.float32), 
             tf.cast(y_true, tf.float32)], Tout = tf.float32) )
 
+<<<<<<< HEAD
 def create_deepstar(input_shape):
     inputs, outputs = model_zoo.deepstar.create(input_shape)
     return keras.Model(inputs=inputs, outputs=outputs)
@@ -20,6 +27,21 @@ def run_deepstar():
 
 def train_deepstar(model):
     x_train, y_train, x_valid, y_valid, x_test, y_test, x_shape, y_shape = helper.load_deepstar()
+=======
+def pearson_r(y_true, y_pred):
+    return (tf.py_function(pearsonr, [tf.cast(y_pred, tf.float32), 
+            tf.cast(y_true, tf.float32)], Tou = tf.float32) )
+
+def create_deepstar(input_shape):
+    inputs, outputs = deepstar.create(input_shape)
+    return keras.Model(inputs=inputs, outputs=outputs)
+
+def train_deepstar():
+    x_train, y_train, x_valid, y_valid, x_test, y_test, x_shape, y_shape = load_deepstar()
+    
+    model = create_deepstar(x_shape)
+    tasks = ['Dev','Hk']
+>>>>>>> steven
     
     metrics = [spearman_r]
     
