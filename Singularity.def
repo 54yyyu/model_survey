@@ -14,8 +14,14 @@ Bootstrap: docker
 From: tensorflow/tensorflow:2.9.1-gpu-jupyter
 
 %files
-    ./model_survey /opt
+    . /opt/model_survey
 
 %post
-    git archive --format=tar.gz -o /tmp/model_survey.tar.gz --prefix=/opt/ ethan
-    python -m pip install --no-cache-dir https://github.com/54yyyu/model_survey/tarball/master
+    cd /opt/model_survey
+    git archive --format=tar.gz -o /tmp/model_survey.tar.gz --prefix=model_survey/ ethan
+    cd
+    python -m pip install --no-cache-dir /tmp/model_survey.tar.gz
+    rm -r /opt/model_survey
+
+%runscript
+    jupyter notebook
