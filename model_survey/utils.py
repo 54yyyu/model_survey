@@ -30,7 +30,7 @@ def train_deepstar():
     model = create_deepstar(x_shape)
     tasks = ['Dev','Hk']
     
-    metrics = [spearman_r]
+    metrics = [pearson_r, spearman_r]
     
     model.compile(keras.optimizers.Adam(learning_rate=0.002),
                     loss='mse',
