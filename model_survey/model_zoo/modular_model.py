@@ -40,9 +40,9 @@ def create(config, input_shape, output_shape):
         if config.x1:
             nn = Conv1D(filters=filter, kernel=1, stride=1)(nn)
         nn = Activation('relu')(nn)
-        if config.rb:
+        if config.rt =='rb':
             nn = residual_block(nn, x1=config.x1)
-        elif config.srb:
+        elif config.rt=='srb':
             nn = sot_residual_block(nn, x1=config.x1)
         nn = MaxPooling1D(pool)(nn)
         nn = Dropout(dropout)(nn)
