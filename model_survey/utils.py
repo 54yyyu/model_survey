@@ -1,8 +1,8 @@
 import numpy as np
+
 from . import model_zoo
 from . import helper
 from re import X
-from model_zoo import deepstar
 from helper import *
 import tensorflow as tf
 from tensorflow import keras
@@ -21,7 +21,7 @@ def create_deepstar(input_shape):
     return keras.Model(inputs=inputs, outputs=outputs)
 
 def create_deepstar(input_shape):
-    inputs, outputs = deepstar.create(input_shape)
+    inputs, outputs = model_zoo.deepstar.create(input_shape)
     return keras.Model(inputs=inputs, outputs=outputs)
 
 def train_deepstar():
