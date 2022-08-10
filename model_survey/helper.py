@@ -85,7 +85,7 @@ def load_basset():
     
     return x_train, y_train, x_valid, y_valid, x_test, y_test, (x_train.shape[1], x_train.shape[2]), y_train.shape[1]
 
-def load_deepstar():
+def load_GM():
     try:
         with h5py.File(os.path.join('.', 'datasets', 'GM12878.h5'), 'r') as hf:
             x_train = np.array(hf['x_train']).astype(np.float32)
