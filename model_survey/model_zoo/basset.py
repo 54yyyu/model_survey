@@ -32,6 +32,7 @@ def create(input_shape=(100, 4), output_shape=2):
     nn = keras.layers.Dropout(0.3)(nn)
     # Output layer
     logits = keras.layers.Dense(output_shape, use_bias=True)(nn)
-    outputs = keras.layers.Activation('sigmoid')(logits)
+    outputs = keras.layers.Activation('sigmoid', dtype='float32')(logits)
     # create keras model
     return inputs, outputs
+
