@@ -34,4 +34,4 @@ def create(input_shape=(100, 4), output_shape=2):
     logits = keras.layers.Dense(output_shape, use_bias=True)(nn)
     outputs = keras.layers.Activation('sigmoid')(logits)
     # create keras model
-    model = keras.Model(inputs=inputs, outputs=outputs)
+    return inputs, outputs
