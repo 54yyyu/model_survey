@@ -3,7 +3,6 @@ import numpy as np
 from . import model_zoo
 from . import helper
 from re import X
-from helper import *
 import tensorflow as tf
 from tensorflow import keras
 from scipy.stats import spearmanr, pearsonr
@@ -25,7 +24,7 @@ def create_deepstar(input_shape):
     return keras.Model(inputs=inputs, outputs=outputs)
 
 def train_deepstar():
-    x_train, y_train, x_valid, y_valid, x_test, y_test, x_shape, y_shape = load_deepstar()
+    x_train, y_train, x_valid, y_valid, x_test, y_test, x_shape, y_shape = helper.load_deepstar()
     
     model = create_deepstar(x_shape)
     tasks = ['Dev','Hk']
