@@ -10,8 +10,6 @@ import numpy as np
 
 def create(config, input_shape, output_shape):
     
-    assert type(config) == dict
-    
     num_conv_layers = config.nc
     
     
