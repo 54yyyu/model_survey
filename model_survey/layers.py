@@ -73,7 +73,7 @@ def sot_residual_block(input_layer, kernel_size=3, activation='relu', num_layers
     return keras.layers.Activation(activation)(nn)
 
 def transformer_block(nn, head_num=8, dropout=.1):
-    units = tf.shape(nn)[-1]
+    units = nn.shape[-1]
     nn1 = keras.layers.MultiHeadAttention(num_heads=head_num, key_dim=192)(nn, nn)
     nn1 = keras.layers.Dropout(dropout)(nn1)
     nn = tf.add(nn, nn1)
