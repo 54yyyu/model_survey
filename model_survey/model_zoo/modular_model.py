@@ -10,7 +10,7 @@ import numpy as np
 
 def create(config, input_shape, output_shape):
     
-    num_conv_layers = config.nc
+    num_conv_layers = int(config.nc)
     
     
     
@@ -20,10 +20,10 @@ def create(config, input_shape, output_shape):
         kernels = [19, 11, 7]
         dropouts = np.linspace(.1, .3, 3)
         
-    elif num_conv_layers==4:
-        filters = [512, 256, 256, 512]
-        pool_sizes = [5, 2, 2, 4]
-        kernels = [19, 11, 9, 7]
+    elif num_conv_layers==1:
+        filters = [1024]
+        pool_sizes = [5]
+        kernels = [19]
         dropouts = np.linspace(.1, .3, 4)
         
     else:
@@ -33,10 +33,10 @@ def create(config, input_shape, output_shape):
     nn = inputs
     
     for layer, filter, pool, kernel, dropout in zip(range(num_conv_layers), filters, pool_sizes, kernels, dropouts):
-        nn = Conv1D(filters=filter, kernel=kernel, padding='same')(nn)
+        nn = Conv1D(filters=filter, kerne_sizel=kernel, padding='same')(nn)
         nn = BatchNormalization()(nn)
         if config.x1:
-            nn = Conv1D(filters=filter, kernel=1, stride=1)(nn)
+            nn = Conv1D(filters=filter, kernel_size=1, stride=1)(nn)
         nn = Activation('relu')(nn)
         if config.rt =='rb':
             nn = layers.residual_block(nn, x1=config.x1)
