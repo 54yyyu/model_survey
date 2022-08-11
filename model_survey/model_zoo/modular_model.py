@@ -29,7 +29,7 @@ def create(config, input_shape, output_shape):
     else:
         raise Exception('c\'mon, be reasonable')
     
-    inputs = keras.Inputs(input_shape)
+    inputs = keras.Input(input_shape)
     nn = inputs
     
     for layer, filter, pool, kernel, dropout in zip(range(num_conv_layers), filters, pool_sizes, kernels, dropouts):
