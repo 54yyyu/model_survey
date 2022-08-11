@@ -69,7 +69,7 @@ def sot_residual_block(input_layer, kernel_size=3, activation='relu', num_layers
                                      kernel_size=kernel_size,
                                      strides=1,
                                      activation=None)
-    nn = tfa.layers.StocasticDepth()([input_layer, nn])
+    nn = tfa.layers.StochasticDepth()([input_layer, nn])
     return keras.layers.Activation(activation)(nn)
 
 def transformer_block(nn, head_num=8, dropout=.1):
