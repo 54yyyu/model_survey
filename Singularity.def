@@ -11,7 +11,7 @@
 #    sudo apptainer build IMAGE_NAME.sif Singularity.def
 
 Bootstrap: docker
-From: tensorflow/tensorflow:2.9.1-gpu
+From: tensorflow/tensorflow:2.9.1-gpu-jupyter
 
 %files
     . /opt/model_survey
@@ -26,5 +26,4 @@ From: tensorflow/tensorflow:2.9.1-gpu
     pip install wandb
 
 %runscript
-    cd /tmp
     wandb agent model_survey/sweeeeeeeeeeeeeeeeeeep-test/ttzkk669
