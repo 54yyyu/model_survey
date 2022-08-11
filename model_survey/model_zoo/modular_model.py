@@ -33,7 +33,7 @@ def create(config, input_shape, output_shape):
     nn = inputs
     
     for layer, filter, pool, kernel, dropout in zip(range(num_conv_layers), filters, pool_sizes, kernels, dropouts):
-        nn = Conv1D(filters=filter, kerne_sizel=kernel, padding='same')(nn)
+        nn = Conv1D(filters=filter, kernel_size=kernel, padding='same')(nn)
         nn = BatchNormalization()(nn)
         if config.x1:
             nn = Conv1D(filters=filter, kernel_size=1, stride=1)(nn)
