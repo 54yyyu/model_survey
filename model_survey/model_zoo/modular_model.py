@@ -35,6 +35,7 @@ def create(config, input_shape, output_shape):
             filters = [300]
         if dataset == 'GM':
             filters = [768]
+
         pool_sizes = [5]
         kernels = [19]
         dropouts = [.1]
