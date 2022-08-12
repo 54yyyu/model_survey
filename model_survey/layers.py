@@ -3,7 +3,7 @@ from tensorflow import keras
 import tensorflow_addons as tfa
 
 
-def residual_block(input_layer, kernel_size=3, activation='relu', num_layers=5, dropout=0.1, x1=False):
+def residual_block(input_layer, kernel_size=3, activation='relu', num_layers=3, dropout=0.1, x1=False):
 
     filters = input_layer.shape.as_list()[-1]  
 
@@ -39,7 +39,7 @@ def residual_block(input_layer, kernel_size=3, activation='relu', num_layers=5, 
     return keras.layers.Activation(activation)(nn)
 
 
-def sot_residual_block(input_layer, kernel_size=3, activation='relu', num_layers=5, dropout=0.1, x1=False):
+def sot_residual_block(input_layer, kernel_size=3, activation='relu', num_layers=3, dropout=0.1, x1=False):
 
     filters = input_layer.shape.as_list()[-1]  
 
