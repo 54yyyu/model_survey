@@ -15,6 +15,7 @@ From: tensorflow/tensorflow:2.9.1-gpu-jupyter
 
 %files
     . /opt/model_survey
+    ../sweep_run.py /tmp
 
 %post
     cd /opt/model_survey
@@ -22,7 +23,7 @@ From: tensorflow/tensorflow:2.9.1-gpu-jupyter
     cd
     python -m pip install --no-cache-dir /tmp/model_survey.tar.gz
     rm -r /opt/model_survey
-    pip install wandb
+    pip install wandb==0.12.21
 
 %runscript
-    python3 -c "import tensorflow as tf; print(tf.__version__)    
+    wandb agent model_survey/sweeeeeeeeeeeeeeeeeeep-test/fg66tfzt
