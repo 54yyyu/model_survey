@@ -60,7 +60,7 @@ def sot_residual_block(input_layer, kernel_size=3, activation='relu', num_layers
         nn = keras.layers.Activation('relu')(nn)
         nn = keras.layers.Dropout(dropout)(nn)
         nn = keras.layers.Conv1D(filters=filters,
-                                    kernel_size=kernel_size,
+                                    kernel_size=1,
                                     strides=1,
                                     padding='same',)(nn) 
         nn = keras.layers.BatchNormalization()(nn)
