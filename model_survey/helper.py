@@ -34,7 +34,7 @@ def load_deepstar():
             y_valid = np.array(hf['y_valid']).astype(np.float32).transpose()
             x_test = np.array(hf['x_test']).astype(np.float32)
             y_test = np.array(hf['y_test']).astype(np.float32).transpose()
-    except FileNotFoundError:
+    except (FileNotFoundError, OSError):
         try:
             os.mkdir('./datasets')
         except FileExistsError:
@@ -63,13 +63,13 @@ def load_basset():
             y_valid = np.array(dataset['valid_out']).astype(np.int32)
             x_test = np.squeeze(np.array(dataset['test_in'])).astype(np.float32)
             y_test = np.array(dataset['test_out']).astype(np.int32)
-    except FileNotFoundError:
+    except (FileNotFoundError, OSError):
         try:
             os.mkdir('./datasets')
         except FileExistsError:
             pass
         
-        wget.download('!wget https://www.dropbox.com/s/pjagp80sqm8petp/Basset.h5?d=1', out=os.path.join('.', 'datasets', 'basset.h5'))
+        wget.download('https://www.dropbox.com/s/pjagp80sqm8petp/Basset.h5?d=1', out=os.path.join('.', 'datasets', 'basset.h5'))
         print('\n')
         with h5py.File(os.path.join('.', 'datasets', 'deepstar.h5'), 'r') as hf:
             x_train = np.squeeze(np.array(dataset['train_in'][:50000])).astype(np.float32)
@@ -94,7 +94,7 @@ def load_GM():
             y_valid = np.array(hf['y_valid']).astype(np.float32)
             x_test = np.array(hf['x_test']).astype(np.float32)
             y_test = np.array(hf['y_test']).astype(np.float32)
-    except FileNotFoundError:
+    except (FileNotFoundError, OSError):
         try:
             os.mkdir('./datasets')
         except FileExistsError:

@@ -26,4 +26,5 @@ From: tensorflow/tensorflow:2.9.1-gpu-jupyter
     pip install wandb==0.12.21
 
 %runscript
-    wandb agent model_survey/sweeeeeeeeeeeeeeeeeeep-test/fg66tfzt
+    #replace this with the wandb command you want to run
+    wandb agent "model_survey/GM Transformer Sweep/h68mrp7f"
