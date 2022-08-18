@@ -20,7 +20,7 @@ From: tensorflow/tensorflow:2.9.1-gpu-jupyter
 %post
     cd /opt/model_survey
     git archive --format=tar.gz -o /tmp/model_survey.tar.gz --prefix=model_survey/ ethan
-    cd
+    cd ..
     python -m pip install --no-cache-dir /tmp/model_survey.tar.gz
     rm -r /opt/model_survey
     pip install wandb==0.12.21

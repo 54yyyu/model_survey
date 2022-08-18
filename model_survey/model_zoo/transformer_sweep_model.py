@@ -29,7 +29,7 @@ def create(config, input_shape, output_shape):
     inputs = keras.Input(input_shape)
     nn = inputs
     
-    for layer, filter, pool, kernel, dropout in zip(range(num_conv_layers), filters, pool_sizes, kernels, dropouts):
+    for filter, pool, kernel, dropout in zip(filters, pool_sizes, kernels, dropouts):
         nn = Conv1D(filters=filter, kernel_size=kernel, padding='same')(nn)
         nn = BatchNormalization()(nn)
         if config.x1:
