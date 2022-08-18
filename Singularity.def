@@ -15,7 +15,7 @@ From: tensorflow/tensorflow:2.9.1-gpu-jupyter
 
 %files
     . /opt/model_survey
-    ../sweep_run.py /tmp
+    #../sweep_run.py /tmp
 
 %post
     cd /opt/model_survey
