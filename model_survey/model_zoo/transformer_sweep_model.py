@@ -33,7 +33,7 @@ def create(config, input_shape, output_shape):
         nn = Conv1D(filters=filter, kernel_size=kernel, padding='same')(nn)
         nn = BatchNormalization()(nn)
         if config.x1:
-            nn = Conv1D(filters=filter, kernel_size=1, stride=1)(nn)
+            nn = Conv1D(filters=filter, kernel_size=1, strides=1)(nn)
         nn = Activation('relu')(nn)
         if pool is not None:    
             nn = MaxPooling1D(pool)(nn)
