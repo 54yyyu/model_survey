@@ -27,4 +27,4 @@ From: tensorflow/tensorflow:2.9.1-gpu-jupyter
 
 %runscript
     #replace this with the wandb command you want to run
-    wandb agent "wandb agent model_survey/GM Transformer Sweep/gwwruvy3"
+    wandb agent model_survey/keras_transformer_sweep/mqns5t53

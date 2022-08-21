@@ -68,11 +68,7 @@ def create(config, input_shape, output_shape):
         nn = BatchNormalization()(nn)
         nn = Activation('relu')(nn)
         nn = Dropout(.5)(nn)
-        
-        nn = Dense(1024)(nn)
-        nn = BatchNormalization()(nn)
-        nn = Activation('relu')(nn)
-        nn = Dropout(.5)(nn)
+
     
     outputs = keras.layers.Dense(output_shape, activation='sigmoid')(nn)
     
