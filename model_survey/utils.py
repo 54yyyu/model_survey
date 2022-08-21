@@ -97,10 +97,6 @@ class EvaluateCallback(keras.callbacks.Callback):
         logs['test_pearson_0'] = pearsonr(pred_a.flatten(), self.y_test[:, 0].flatten())[0]
         logs['test_pearson_1'] = pearsonr(pred_b.flatten(), self.y_test[:, 1].flatten())[0]
         
-        pred = np.array(self.model.predict(self.x_valid, batch_size=self.batch_size))
-        pred_a = pred[:, 0]
-        pred_b = pred[:, 1]
-
-        logs = logs or {}
-        logs['valid_pearson_0'] = pearsonr(pred_a.flatten(), self.y_valid[:, 0].flatten())[0]
-        logs['valid_pearson_1'] = pearsonr(pred_b.flatten(), self.y_valid[:, 1].flatten())[0]
+        #logs['val_aupr'] = keras.metrics.AUC(curve='pr', name='aupr')()
+        
+        

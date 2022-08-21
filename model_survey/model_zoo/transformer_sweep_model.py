@@ -71,6 +71,6 @@ def create(config, input_shape, output_shape):
         nn = Activation('relu')(nn)
         nn = Dropout(.5)(nn)
     
-    outputs = keras.layers.Dense(output_shape)(nn)
+    outputs = keras.layers.Dense(output_shape, activation='sigmoid')(nn)
     
     return inputs, outputs
