@@ -46,9 +46,8 @@ def create(config, input_shape, output_shape):
     
     for layer in range(config.nt):
         nn = layers.transformer_block(nn)
-    
     representation = keras.layers.LayerNormalization(epsilon=1e-5)(nn)
-    attention_weights = tf.nn.softmax(layers.Dense(1)(representation), axis=1)
+    attention_weights = tf.nn.softmax(keras.layers.Dense(1)(representation), axis=1)
     weighted_representation = tf.matmul(
         attention_weights, representation, transpose_a=True
     )
