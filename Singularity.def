@@ -15,14 +15,17 @@ From: tensorflow/tensorflow:2.9.1-gpu-jupyter
 
 %files
     . /opt/model_survey
+    #../sweep_run.py /tmp
 
 %post
     cd /opt/model_survey
     git archive --format=tar.gz -o /tmp/model_survey.tar.gz --prefix=model_survey/ ethan
-    cd
+    cd ..
     python -m pip install --no-cache-dir /tmp/model_survey.tar.gz
     rm -r /opt/model_survey
     pip install wandb
+    pip install tensorflow_addons==0.17.1
 
 %runscript
-    python3 -c "import tensorflow as tf; print(tf.__version__)    
+    #replace this with the wandb command you want to run
+    wandb agent model_survey/keras_transformer_sweep/mqns5t53

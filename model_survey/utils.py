@@ -78,3 +78,25 @@ def train_deepstar():
 
     #print(results)
     
+class EvaluateCallback(keras.callbacks.Callback):
+    def __init__(self, x_valid, y_valid, x_test, y_test, bs):
+        super(EvaluateCallback, self).__init__()
+        self.x_test = x_test
+        self.y_test = y_test
+        self.x_valid = x_valid
+        self.y_valid = y_valid
+        self.batch_size = bs
+    
+    def on_epoch_end(self, epoch, logs=None):
+
+        pred = np.array(self.model.predict(self.x_test, batch_size=self.batch_size))
+        pred_a = pred[:, 0]
+        pred_b = pred[:, 1]
+
+        logs = logs or {}
+        logs['test_pearson_0'] = pearsonr(pred_a.flatten(), self.y_test[:, 0].flatten())[0]
+        logs['test_pearson_1'] = pearsonr(pred_b.flatten(), self.y_test[:, 1].flatten())[0]
+        
+        #logs['val_aupr'] = keras.metrics.AUC(curve='pr', name='aupr')()
+        
+        
