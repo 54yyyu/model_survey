@@ -24,6 +24,7 @@ From: tensorflow/tensorflow:2.9.1-gpu-jupyter
     python -m pip install --no-cache-dir /tmp/model_survey.tar.gz
     rm -r /opt/model_survey
     pip install wandb==0.12.21
+    pip install tensorflow-addons==0.17.1
 
 %runscript
     #replace this with the wandb command you want to run
