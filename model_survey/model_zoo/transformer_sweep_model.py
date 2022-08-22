@@ -45,7 +45,7 @@ def create(config, input_shape, output_shape):
         nn = Dropout(.2)(nn)
     
     for layer in range(config.nt):
-        nn = layers.transformer_block(nn)
+        nn = layers.stochastic_transformer_block(nn)
     representation = keras.layers.LayerNormalization(epsilon=1e-5)(nn)
     attention_weights = tf.nn.softmax(keras.layers.Dense(1)(representation), axis=1)
     weighted_representation = tf.matmul(
@@ -69,7 +69,8 @@ def create(config, input_shape, output_shape):
         nn = Activation('relu')(nn)
         nn = Dropout(.5)(nn)
 
-    
-    outputs = keras.layers.Dense(output_shape, activation='sigmoid')(nn)
+    logits = keras.layers.Dense(output_shape)(nn)
+
+    outputs = keras.layers.Activation('sigmoid', dtype='float32')
     
     return inputs, outputs

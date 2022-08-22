@@ -99,4 +99,4 @@ def stochastic_transformer_block(nn):
     x3 = keras.layers.Dense(units)
     x3 = keras.layers.Dropout(.1)
     
-    x3 = tfa.layers.StochasticDepth([x2, x3])
+    return tfa.layers.StochasticDepth()([x2, x3])
