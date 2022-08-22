@@ -31,7 +31,7 @@ setup(
         "matplotlib",
         "scipy",
         "wget",
-        "tensorflow_addons"
+        #"tensorflow_addons"
     ],
     extras_require={
         "dev": [
