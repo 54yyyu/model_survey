@@ -71,6 +71,6 @@ def create(config, input_shape, output_shape):
 
     logits = keras.layers.Dense(output_shape)(nn)
 
-    outputs = keras.layers.Activation('sigmoid', dtype='float32')
+    outputs = keras.layers.Activation('sigmoid', dtype='float32')(logits)
     
     return inputs, outputs
