@@ -24,6 +24,7 @@ def create(config, input_shape, output_shape):
     pool_sizes = [None, 10]
     kernels = [19, 7]
     dropouts = [.1, .1]
+    transformer_dropouts = np.linspace(.9, .5, config.nt)
     
     
     inputs = keras.Input(input_shape)
@@ -44,14 +45,19 @@ def create(config, input_shape, output_shape):
         #nn = Activation('relu')(nn)
         nn = Dropout(.2)(nn)
     
-    for layer in range(config.nt):
-        nn = layers.stochastic_transformer_block(nn)
+    for layer, dropout in zip(range(config.nt), transformer_dropouts):
+        nn = layers.stochastic_transformer_block(nn, dropout)
+    """
     representation = keras.layers.LayerNormalization(epsilon=1e-5)(nn)
     attention_weights = tf.nn.softmax(keras.layers.Dense(1)(representation), axis=1)
     weighted_representation = tf.matmul(
         attention_weights, representation, transpose_a=True
     )
+    
     nn = tf.squeeze(weighted_representation, -2)
+    """
+    
+    nn = Flatten()(nn)
     
     if dataset == 'deepstar':
         nn = Dense(256)(nn)
