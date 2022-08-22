@@ -88,15 +88,15 @@ def stochastic_transformer_block(nn):
     units = nn.shape[-1]
     x1 = keras.layers.LayerNormalization(epsilon=1e-5)(nn)
     
-    attention_output = keras.layers.MultiHeadAttention(
-            num_heads=8, key_dim=192, dropout=0.1
-        )(x1, x1)
+    attention_output = keras.layers.MultiHeadAttention(num_heads=8, key_dim=192)(x1, x1)
+    
+    #attention_output = x1(attention_output)
     
     x2 = tfa.layers.StochasticDepth()([nn, attention_output])
     #x2 = keras.layers.Add()([attention_output, nn])
     x3 = keras.layers.LayerNormalization(epsilon=1e-5)(x2)
     
-    x3 = keras.layers.Dense(units)
-    x3 = keras.layers.Dropout(.1)
-    
+    x3 = keras.layers.Dense(units)(x3)
+    x3 = keras.layers.Dropout(.1)(x3)
+
     return tfa.layers.StochasticDepth()([x2, x3])
